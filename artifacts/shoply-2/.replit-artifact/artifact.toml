@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Shoply 2"
+description = "A bilingual-ready Arabic neighborhood marketplace storefront with product browsing, cart checkout, customer support, and protected admin management backed by Supabase."
+version = "1.0.0"
+id = "artifacts/shoply-2"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22806
+
+[services.development]
+run = "pnpm --filter @workspace/shoply-2 run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/shoply-2", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/shoply-2/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22806"
+BASE_PATH = "/"
