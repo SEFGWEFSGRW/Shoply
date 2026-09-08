@@ -1,6 +1,6 @@
 import express, { type Express, type Request, type Response } from "express";
 import cors from "cors";
-import router from "./routes";
+import router from "./routes/index.js";
 
 const app: Express = express();
 
